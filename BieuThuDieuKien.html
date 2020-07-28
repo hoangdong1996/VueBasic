@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+    <style>
+        .tabs{
+            margin: 0;
+            padding: 0;
+        }
+        .tabs li{
+            display: inline-block;
+            padding: 10px 15px;
+            border: 1px solid;
+            cursor: pointer;
+        }
+        .login, .register{
+            border: solid 1px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul class="tabs">
+        <li v-on:click="changeSeclect('login')">Đăng nhập</li>
+        <li v-on:click="changeSeclect('register')">Đăng ký</li>
+    </ul>
+    <div class="login" v-if="tabSeclect === 'login'">
+        <h2>Form login</h2>
+        <form action="">
+            <input type="text" placeholder="UserName">
+            <input type="text" placeholder="Password">
+            
+        </form>
+    </div>
+    <div class="register" v-else-if="tabSeclect ==='register'">
+        <h2>Form register</h2>
+        <form action="">
+            <input type="text" placeholder="UserName">
+            <input type="text" placeholder="Password">
+            <input type="text" placeholder="Nhập lại Password">
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            tabSeclect : 'register'
+        },
+        methods:{
+            changeSeclect(select){
+                this.tabSeclect = select;
+            }
+            
+        }
+    })
+</script>
+</html>

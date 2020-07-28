@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        .box {
+            height: 200px;
+            width: 200px;
+            background-color: rgb(146, 146, 219);
+        }
+        .box2 {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <h1>Count: {{counter}}</h1>
+       <button v-on:click="handleClick(5)">click</button>
+       <div class="box" v-on:mousemove ="handleMove" v-bind:class="box2"> 
+        <p>{{offsetX}}</p>
+        <p>{{offsetY}}</p>
+    </div>
+    <form action="dangnhap.as" v-on:submit.prevent="handleSubmit" v-on:keyup.enter="submit">
+        <label for="">Nhập tên</label>
+        <input type="text" name="firtsName"> <br>
+        <label for="">Mật khẩu</label>
+        <input type="text" name="passwork"> <br>
+    </form>
+    <p>{{message}}</p>
+    <p>{{typeMessage}}</p>
+    <div>
+       
+    </div>
+    </div>
+    
+</body>
+<script >
+    var vue = new Vue({
+        el:'#app',
+        data: {
+            counter: 0,
+            offsetX : 0,
+            offsetY : 0,
+            message: 'Hello word',
+            isBox2: true
+        },
+        methods:{
+            handleClick(number ) {
+                console.log('click',this);
+                this.counter += number;
+            },
+            handleMove(e) {
+                this.offsetX = e.offsetX;
+                this.offsetY = e.offsetY;
+                console.log(e);
+            },
+            handleSubmit(e) {
+                console.log(e);
+
+            }
+        },
+        computed: {
+            typeMessage() {
+                return this.message.split('').reverse().join('')
+            },
+
+            box2(){
+                return box2 = this.isBox2;
+            }
+        }
+    })
+</script>
+</html>
